@@ -7,6 +7,6 @@
         <title>IDA-IMMO</title>
     </head>
     <body>
-        <h1>Bonjour! ici IDA-IMMO</h1>
+        <h1>Hello ici Ida</h1>
     </body>
 </html>
