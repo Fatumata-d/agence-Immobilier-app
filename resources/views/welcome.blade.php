@@ -2,6 +2,7 @@
 
 @section('title', 'Accueil')
 
+<<<<<<< HEAD
 @section('content') 
 
 <header class="hero-section bg-light py-5">
@@ -197,4 +198,14 @@
 </body>
 </html>
  
+=======
+@section('content')
+<div class="container text-center py-5">
+    <div class="card shadow-lg p-4">
+        <h1 class="mb-4">Bienvenue chez <span class="text-primary">IDA IMMO</span></h1>
+        <p class="lead">Votre solution fiable pour la location, la vente et l’achat de biens immobiliers au Sénégal.</p>
+        <button><a href="{{ route('Biens') }}" class="btn btn-primary mt-3">Voir les biens disponibles</a></button>
+    </div>
+</div>
+>>>>>>> 8b4d807e3a4a3c4ec2a46e17aacd3698c88d4582
 @endsection

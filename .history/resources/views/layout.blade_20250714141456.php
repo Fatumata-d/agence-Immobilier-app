@@ -30,6 +30,7 @@
     </style>
 </head>
 <body>
+
     <!-- Header avec logo -->
     <header class="bg-light py-3">
         <div class="container d-flex align-items-center justify-content-between">
@@ -63,6 +64,7 @@
                         <a class="nav-link {{ Request::routeIs('Contact') ? 'active' : '' }}" href="{{ route('Contact') }}">Contact</a>
                     </li>
                     <li class="nav-item">
+>>>>>>> 6b8042a0c1c5cb70f69ffce41e18941897c35c98
                         <a class="nav-link {{ Request::routeIs('loginPage') ? 'active' : '' }}" href="{{ route('loginPage') }}">
                             <i class="fa fa-user"></i> Connexion
                         </a>
@@ -72,7 +74,20 @@
         </div>
     </nav>
 
+<<<<<<< HEAD
+    
+    <main class="container">
+        @yield('content')
+    </main>
 
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Agence Immobilière IDA IMMO. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+=======
     <!-- Contenu -->
     <main class="container py-5">
         @yield('content')
@@ -85,6 +100,6 @@
 
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+>>>>>>> 6b8042a0c1c5cb70f69ffce41e18941897c35c98
 </body>
 </html>
