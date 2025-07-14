@@ -15,7 +15,7 @@
             <a href="{{ route('Rapport') }}">Rapport</a>
             <a href="{{ route('ListeAgents') }}">Liste des Agents</a>
             <a href="{{ route('ListeClients') }}" >Liste des Clients</a>
-            <a href="{{ route('deconnexion-admin') }}" >Se déconnecter</a>
+            <a href="{{ route('deconnexion-admin') }}" class="btn btn-danger btn-block">Se déconnecter</a>
         </div>
     </div>
 

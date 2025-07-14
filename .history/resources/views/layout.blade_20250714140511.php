@@ -23,7 +23,7 @@
                     <li>
                         <a class="nav-link {{ Request::routeIs('welcome') ? 'active' : '' }}" href="{{ route('welcome') }}">Accueil</a>
                     </li>
-                    <li>
+                    <li class="nav-item">
                         <a class="nav-link {{ Request::routeIs('APropos') ? 'active' : '' }}" href="{{ route('APropos') }}">À propos</a>
                     </li>
                     <li>
