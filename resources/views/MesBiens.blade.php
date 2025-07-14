@@ -1,48 +1,59 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mes Biens</title>
-</head>
-<body>
-    <h2>Mes biens ajoutés</h2>
+  @extends('layout')
 
-    @foreach ($biens as $bien)
-        <div style="border:1px solid #ccc; margin-bottom:20px; padding:10px;">
-            <h4>{{ $bien->titre }}</h4>
-            <p>{{ $bien->description }}</p>
-            <p><strong>Statut :</strong> {{ ucfirst($bien->statut) }}</p>
-            <img src="{{ asset('storage/photos/' . $bien->photo) }}" width="300" alt="photo du bien">
+@section('title', 'Mes Biens')
 
-        
-            <form method="POST" action="{{ route('statutBien', $bien->id) }}">
-                @csrf
-                @method('PUT')
+@section('content')
+<div class="container py-5">
+    <h2 class="mb-4 text-center">Mes biens ajoutés</h2>
 
-                <label>Changer le statut :</label>
-                <select name="statut" required>
-                    <option {{ $bien->statut == 'disponible' ? 'selected' : '' }}>disponible</option>
-                    <option {{ $bien->statut == 'loué' ? 'selected' : '' }}>loué</option>
-                    <option {{ $bien->statut == 'vendu' ? 'selected' : '' }}>vendu</option>
-                </select>
+    @forelse ($biens as $bien)
+    <div class="card mb-4 shadow">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ asset('storage/photos/' . $bien->photo) }}" class="img-fluid rounded-start" alt="Photo du bien {{ $bien->titre }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-title">{{ $bien->titre }}</h4>
+                    <p class="card-text">{{ $bien->description }}</p>
+                    <p class="card-text"><strong>Statut :</strong> <span class="badge 
+                        @if($bien->statut == 'disponible') bg-success
+                        @elseif($bien->statut == 'loué') bg-warning
+                        @elseif($bien->statut == 'vendu') bg-danger
+                        @else bg-secondary @endif
+                        ">{{ ucfirst($bien->statut) }}</span></p>
 
-                <button type="submit">Mettre à jour</button>
-            </form>
+                    <form method="POST" action="{{ route('statutBien', $bien->id) }}" class="mb-3">
+                        @csrf
+                        @method('PUT')
 
-            <form method="POST" action="{{ route('supprimerBien', $bien->id) }}" style="margin-top:10px;">
-                @csrf
-                @method('DELETE')
-                <button onclick="return confirm('Confirmer la suppression ?')" style="color:red;">
-                    Supprimer
-                </button>
-            </form>
-            <br>
-            <button><a href="{{ route('modifierBien', $bien->id) }}">Modifier ce bien</a></button>
+                        <label for="statut-{{ $bien->id }}" class="form-label">Changer le statut :</label>
+                        <select name="statut" id="statut-{{ $bien->id }}" class="form-select w-auto d-inline-block me-2" required>
+                            <option value="disponible" {{ $bien->statut == 'disponible' ? 'selected' : '' }}>Disponible</option>
+                            <option value="loué" {{ $bien->statut == 'loué' ? 'selected' : '' }}>Loué</option>
+                            <option value="vendu" {{ $bien->statut == 'vendu' ? 'selected' : '' }}>Vendu</option>
+                        </select>
+
+                        <button type="submit" class="btn btn-primary btn-sm">Mettre à jour</button>
+                    </form>
+
+                    <form method="POST" action="{{ route('supprimerBien', $bien->id) }}" onsubmit="return confirm('Confirmer la suppression ?');" class="mb-3">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                    </form>
+
+                    <a href="{{ route('modifierBien', $bien->id) }}" class="btn btn-outline-secondary btn-sm mt-auto align-self-start">Modifier ce bien</a>
+                </div>
+            </div>
         </div>
-    @endforeach
+    </div>
+    @empty
+    <div class="alert alert-info text-center">Vous n'avez encore ajouté aucun bien.</div>
+    @endforelse
 
-    <br>
-    <button> <a href="{{ route('AgentDashboard') }}">Retour</a></button>
-</body>
-</html>
+    <div class="text-center mt-4">
+        <a href="{{ route('AgentDashboard') }}" class="btn btn-secondary">← Retour</a>
+    </div>
+</div>
+@endsection

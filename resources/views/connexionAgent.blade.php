@@ -1,28 +1,41 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Connexion - Agent</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body>
-    <h2>Connexion - Agent</h2>
+<body class="bg-light d-flex align-items-center justify-content-center vh-100">
 
-    @if (session('error'))
-        <p style="color: red">{{ session('error') }}</p>
-    @endif
+    <div class="card shadow p-4" style="max-width: 380px; width: 100%;">
+        <h2 class="text-center mb-4">Connexion - Agent</h2>
 
-    <form method="POST" action="{{ route('traitementConnexionAgent') }}">
-        @csrf
+        @if (session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
 
-        <label>Email :</label><br>
-        <input type="email" name="email" value="{{ old('email') }}" autocomplete="off" required><br><br>
+        <form method="POST" action="{{ route('traitementConnexionAgent') }}">
+            @csrf
 
-        <label>Mot de passe :</label><br>
-        <input type="password" name="motDePasse" autocomplete="new-password" required><br><br>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email :</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" autocomplete="off" required />
+            </div>
 
-        <button type="submit">Se connecter</button>
-    </form>
-    <br>
-    <button> <a href="{{ route('connexion') }}">Retour</a></button>
+            <div class="mb-3">
+                <label for="motDePasse" class="form-label">Mot de passe :</label>
+                <input type="password" class="form-control" id="motDePasse" name="motDePasse" autocomplete="new-password" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Se connecter</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="{{ route('connexion') }}" class="btn btn-outline-secondary">← Retour</a>
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

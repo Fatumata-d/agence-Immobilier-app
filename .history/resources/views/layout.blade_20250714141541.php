@@ -85,6 +85,6 @@
 
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+>>>>>>> 6b8042a0c1c5cb70f69ffce41e18941897c35c98
 </body>
 </html>
